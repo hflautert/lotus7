@@ -14,6 +14,9 @@ systemctl stop firewalld
 # Instalar squid
 yum install squid -y
 
+# Habilita cache padrao na configuração.
+sed -i "s/#cache_dir/cache_dir/g" /etc/squid/squid.conf
+
 # Ativar servico na inicializacao
 systemctl enable squid.service
 
