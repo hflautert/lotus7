@@ -42,25 +42,49 @@ mysql_secure_installation
 # Baixar versao atual estavel
 curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.2.tar.gz
 tar xvzf mediawiki-*.tar.gz
-mv mediawiki-1.24.2/* /var/www/html
+mkdir /var/www/wiki
+mv mediawiki-1.24.2/* /var/www/wiki
 
-# Ajustar SELINUX
-restorecon -FR /var/www/html
+# Configuração APACHE
+echo "
+Digite o endereço para acessar esta wiki, ex: wiki.empresa.com.br :"
+read vhost
+
+echo "
+O apache será configurado com: $vhost, lembre-se de criar esta entrada em seu servidor de DNS.
+"
+
+cat << EOF > /etc/httpd/conf.d/wiki.conf
+<VirtualHost *:80>
+    ServerName $vhost
+    DocumentRoot /var/www/wiki
+    ErrorLog /var/log/httpd/wiki-error_log
+    CustomLog /var/log/httpd/wiki-access_log combined
+</VirtualHost>
+EOF
+
+# Ajustar SELINUX e permissoes
+restorecon -FR /var/www/wiki
+chown -R root:apache /var/www/wiki
+
+# Reiniciar apache
+systemctl restart httpd
 
 # Banco de dados
 echo "
-Sera criado um usuario (diferente de root) para base da wiki.
-Digite usuario:"
-read username
-echo "
+Sera criado um usuario wiki_adm gerenciar a base da da wiki.
 Digite senha:"
 read -s password
 
-echo "CREATE DATABASE wiki_db;
-GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON my_wiki.* TO '$username'@'localhost' IDENTIFIED BY '$password';
-FLUSH PRIVILEGES;" > temp.sql
+cat << EOF > /root/temp.sql
+CREATE DATABASE wiki_db;
+GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON my_wiki.* TO 'wiki_adm'@'localhost' IDENTIFIED BY '$password';
+FLUSH PRIVILEGES;
+EOF
 
 echo "Agora digite a senha de root para conectar e criar a base no banco de dados:"
 mysql -u root -p < temp.sql
+
+rm /root/temp.sql
 
 # Finalizar configuração via browser.
