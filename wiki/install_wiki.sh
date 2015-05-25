@@ -49,14 +49,14 @@ restorecon -FR /var/www/html
 
 # Banco de dados
 echo "
-Sera criado um usuario para base da wiki.
+Sera criado um usuario (diferente de root) para base da wiki.
 Digite usuario:"
 read username
 echo "
 Digite senha:"
 read -s password
 
-echo "CREATE DATABASE wiki_base2;
+echo "CREATE DATABASE wiki_db;
 GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON my_wiki.* TO '$username'@'localhost' IDENTIFIED BY '$password';
 FLUSH PRIVILEGES;" > temp.sql
 
