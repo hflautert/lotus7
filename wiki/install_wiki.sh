@@ -37,10 +37,10 @@ Pressione <enter> para configurar o mysql com mysql_secure_installation.
 "
 read
 
-mysql_secure_installation
+#mysql_secure_installation
 
 # Baixar versao atual estavel
-curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.2.tar.gz
+#curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.2.tar.gz
 tar xvzf mediawiki-*.tar.gz
 mkdir /var/www/wiki
 mv mediawiki-1.24.2/* /var/www/wiki
@@ -51,8 +51,7 @@ Digite o endereço para acessar esta wiki, ex: wiki.empresa.com.br :"
 read vhost
 
 echo "
-O apache será configurado com: $vhost, lembre-se de criar esta entrada em seu servidor de DNS.
-"
+O apache será configurado com: $vhost, lembre-se de criar esta entrada em seu servidor de DNS."
 
 cat << EOF > /etc/httpd/conf.d/wiki.conf
 <VirtualHost *:80>
@@ -68,7 +67,7 @@ restorecon -FR /var/www/wiki
 chown -R root:apache /var/www/wiki
 
 # Reiniciar apache
-systemctl restart httpd
+systemctl reload httpd
 
 # Banco de dados
 echo "
@@ -76,15 +75,27 @@ Sera criado um usuario wiki_adm gerenciar a base da da wiki.
 Digite senha:"
 read -s password
 
-cat << EOF > /root/temp.sql
+cat << EOF > ~/temp.sql
 CREATE DATABASE wiki_db;
-GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON my_wiki.* TO 'wiki_adm'@'localhost' IDENTIFIED BY '$password';
+GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON wiki_db.* TO 'wiki_adm'@'localhost' IDENTIFIED BY '$password';
 FLUSH PRIVILEGES;
 EOF
 
 echo "Agora digite a senha de root para conectar e criar a base no banco de dados:"
-mysql -u root -p < temp.sql
+mysql -u root -p < ~/temp.sql
 
-rm /root/temp.sql
+rm ~/temp.sql
 
-# Finalizar configuração via browser.
+echo "
+Acessar http://$vhost para finalizar a configuração.
+
+Servidor da base de dados: localhost
+Nome da base de dados: wiki_db
+Nome de usuário do banco de dados: wiki_adm
+Senha do banco de dados: $password
+
+Dicas:
+Ativar o XCache para agilizar o carregamento das páginas (Será solicitado na configuração WEB).
+Salvar logo da empresa em:
+/var/www/html/resources/assets/wiki.png
+"
