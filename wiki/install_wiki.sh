@@ -37,10 +37,10 @@ Pressione <enter> para configurar o mysql com mysql_secure_installation.
 "
 read
 
-#mysql_secure_installation
+mysql_secure_installation
 
 # Baixar versao atual estavel
-#curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.2.tar.gz
+curl -O http://releases.wikimedia.org/mediawiki/1.24/mediawiki-1.24.2.tar.gz
 tar xvzf mediawiki-*.tar.gz
 mkdir /var/www/wiki
 mv mediawiki-1.24.2/* /var/www/wiki
