@@ -14,6 +14,11 @@
 # -> Reiniciar
 # reboot
 
+# Variaveis
+wiki_down_url="http://releases.wikimedia.org/mediawiki/1.25/mediawiki-1.25.1.tar.gz"
+wiki_file_name="mediawiki-1.25.1.tar.gz"
+wiki_x_folder="mediawiki-1.25.1"
+
 # Instalação de requsitos, APACHE, MYSQL, PHP:
 yum install -y httpd
 yum install -y mariadb-server mariadb
@@ -27,7 +32,7 @@ yum install -y php-xcache
 systemctl start httpd
 systemctl enable httpd
 firewall-cmd --permanent --add-service=http
-systemctl restart firewalld
+systemctl reload firewalld
 
 systemctl start mariadb
 systemctl enable mariadb
@@ -40,10 +45,10 @@ read
 mysql_secure_installation
 
 # Baixar versao atual estavel
-curl -O http://releases.wikimedia.org/mediawiki/1.25/mediawiki-1.25.1.tar.gz
-tar xvzf mediawiki-*.tar.gz
+curl -O $wiki_down_url
+tar xvf $wiki_file_name
 mkdir /var/www/wiki
-mv mediawiki-1.25.1/* /var/www/wiki
+mv $wiki_x_folder/* /var/www/wiki
 
 # Configuração APACHE
 echo "
