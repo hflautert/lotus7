@@ -86,21 +86,25 @@ GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON wiki_
 FLUSH PRIVILEGES;
 EOF
 
-echo "Agora digite a senha de root para conectar e criar a base no banco de dados:"
+echo "
+Agora digite a senha de root para conectar e criar a base no banco de dados:"
 mysql -u root -p < ~/temp.sql
 
 rm ~/temp.sql
 
 echo "
-Acessar http://$vhost para finalizar a configuração.
-
+### Dados da instalação ###
 Servidor da base de dados: localhost
 Nome da base de dados: wiki_db
 Nome de usuário do banco de dados: wiki_adm
 Senha do banco de dados: $password
 
-Dicas:
+### Dicas ###
 Ativar o XCache para agilizar o carregamento das páginas (Será solicitado na configuração WEB).
 Salvar logo da empresa em:
 /var/www/html/resources/assets/wiki.png
+
+### Próximo passo ###
+Para finalizar a configuração acesse:
+http://$vhost
 "
