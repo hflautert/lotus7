@@ -32,7 +32,7 @@ yum install -y php-xcache
 systemctl start httpd
 systemctl enable httpd
 firewall-cmd --permanent --add-service=http
-systemctl reload firewalld
+systemctl restart firewalld
 
 systemctl start mariadb
 systemctl enable mariadb
