@@ -87,7 +87,8 @@ FLUSH PRIVILEGES;
 EOF
 
 echo "
-Agora digite a senha de root para conectar e criar a base no banco de dados:"
+O instalador irá conectar no banco e criar a base no banco de dados.
+Digite a senha de root, definida anteriormente no mysql_secure_installation:"
 mysql -u root -p < ~/temp.sql
 
 rm ~/temp.sql
