@@ -102,8 +102,8 @@ Senha do banco de dados: $password
 
 ### Dicas ###
 Ativar o XCache para agilizar o carregamento das páginas (Será solicitado na configuração WEB).
-Salvar logo da empresa em:
-/var/www/html/resources/assets/wiki.png
+Personalize a wiki, salve o logo da empresa em:
+/var/www/wiki/resources/assets/wiki.png
 
 ### Próximo passo ###
 Para finalizar a configuração acesse:
