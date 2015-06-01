@@ -24,7 +24,7 @@ yum install -y httpd
 yum install -y mariadb-server mariadb
 yum install -y php php-mysql php-gd php-xml php-intl php-ldap
 
-# Para melhor o desempenho php-xcache:
+# Para melhor o desempenho, php-xcache:
 yum install -y epel-release
 yum install -y php-xcache
 
@@ -81,8 +81,8 @@ Digite senha:"
 read -s password
 
 cat << EOF > ~/temp.sql
-CREATE DATABASE wiki_db;
-GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON wiki_db.* TO 'wiki_adm'@'localhost' IDENTIFIED BY '$password';
+CREATE DATABASE my_wiki;
+GRANT INDEX, CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, LOCK TABLES ON my_wiki.* TO 'wiki_adm'@'localhost' IDENTIFIED BY '$password';
 FLUSH PRIVILEGES;
 EOF
 
@@ -96,7 +96,7 @@ rm ~/temp.sql
 echo "
 ### Dados da instalação ###
 Servidor da base de dados: localhost
-Nome da base de dados: wiki_db
+Nome da base de dados: my_wiki
 Nome de usuário do banco de dados: wiki_adm
 Senha do banco de dados: $password
 
