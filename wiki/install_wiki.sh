@@ -76,7 +76,7 @@ systemctl reload httpd
 
 # Banco de dados
 echo "
-Sera criado um usuario wiki_adm gerenciar a base da da wiki.
+Sera criado um usuario wiki_adm para gerenciar a base da da wiki.
 Digite senha:"
 read -s password
 
