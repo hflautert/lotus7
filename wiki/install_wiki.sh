@@ -22,7 +22,7 @@ wiki_x_folder="mediawiki-1.25.1"
 # Instalação de requsitos, APACHE, MYSQL, PHP:
 yum install -y httpd
 yum install -y mariadb-server mariadb
-yum install -y php php-mysql php-gd php-xml php-intl
+yum install -y php php-mysql php-gd php-xml php-intl php-ldap
 
 # Para melhor o desempenho php-xcache:
 yum install -y epel-release
