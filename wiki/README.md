@@ -79,7 +79,7 @@ Desabilitar SELINUX:
  SELINUX=disabled
  ````
  - TODO: Mapear as permissões que impactam na autenticação com o AD.
- - 
+
 Recarregar o apache:
 ````shell
  systemctl reload httpd
