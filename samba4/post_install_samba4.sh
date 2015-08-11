@@ -1,17 +1,18 @@
-#Copy Kerberos conf
+# Configuração do Kerberos
 cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
 
-#Change startup mode
+# Alterar inicialização
 sed -i 's/SAMBA_START_MODE="none"/SAMBA_START_MODE="ad"/g' /etc/default/sernet-samba
 
-#Service Startup
+# Inicialização dos serviços
 systemctl start sernet-samba-ad 
 chkconfig sernet-samba-ad on 
 chkconfig sernet-samba-smbd off 
 chkconfig sernet-samba-nmbd off 
 chkconfig sernet-samba-winbindd off
 
-# Firewall Setup
+# Liberações do firewall
+# Exibir portas usadas:
 # netstat -tlpn4 | grep samba
 firewall-cmd --permanent --zone=public --add-port=3268/tcp
 firewall-cmd --permanent --zone=public --add-port=3269/tcp
@@ -28,7 +29,7 @@ systemctl reload firewalld
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
-Final tests and setup.
+# Testes e configurações finais
 echo "Samba test
 smbclient -L \\127.0.0.1 -U administrator
 
