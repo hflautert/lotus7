@@ -5,6 +5,9 @@ wget -O /etc/yum.repos.d/sernet-samba.repo https://sernet-samba-public:Noo1oxe4z
 sed -i 's/USERNAME:ACCESSKEY/sernet-samba-public:Noo1oxe4zo/g' /etc/yum.repos.d/sernet-samba.repo
 
 # Instalação de pacotes
+# Erro certificado - contorno:
+# vim /etc/yum.repos.d/sernet-samba.repo
+# sslverify=0
 yum -y install sernet-samba sernet-samba-ad
 
 # Promover o domínio
