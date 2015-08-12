@@ -12,7 +12,8 @@ echo "Samba instalado:"
 samba -V
 
 # Instruções
-echo "Antes de provomer o domínio, ajuste seu DNS.
+echo "
+Antes de provomer o domínio, ajuste seu DNS.
 DNS1=x.x.x.x - Ip do proprio servidor.
 DNS2=x.x.x.x - Ip de outro servidor DNS.
 Search domain = dominio.com.br
