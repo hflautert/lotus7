@@ -10,12 +10,19 @@ yum -y install sernet-samba sernet-samba-ad
 # Promover o domínio
 echo "Samba instalado:"
 samba -V
+
+# Instruções
 echo "Antes de provomer o domínio, ajuste seu DNS.
 DNS1=x.x.x.x - Ip do proprio servidor.
 DNS2=x.x.x.x - Ip de outro servidor DNS.
 Search domain = dominio.com.br
-A configuração pode ser feita pelo utilitário nmtui"
+A configuração pode ser feita pelo utilitário nmtui.
 
-echo "Para promover o domínio use:"
-echo "samba-tool domain provision"
-echo "Para maiores informações: https://wiki.samba.org/index.php/Samba_AD_DC_HOWTO"
+Após o DNS verifique o horário do seu servidor,
+caso não esteja correto podera causar problemas com o domínio.
+
+Para promover o domínio use:
+samba-tool domain provision
+Para maiores informações acesse:
+https://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
+"
