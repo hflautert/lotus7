@@ -33,6 +33,13 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 echo "Samba test
 smbclient -L \\127.0.0.1 -U administrator
 
+Setup DNS
+vim /etc/resolv.conf
+search domain.sc.gov.br
+nameserver 127.0.0.1
+nameserver 192.168.10.1
+
+
 DNS test
 host -t SRV _ldap._tcp.domain.sc.gov.br.
 _ldap._tcp.domain.sc.gov.br has SRV record 0 100 389 rendeira.domain.sc.gov.br.
