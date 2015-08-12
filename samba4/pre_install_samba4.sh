@@ -18,7 +18,7 @@ DNS2=x.x.x.x - Ip de outro servidor DNS.
 Search domain = dominio.com.br
 A configuração pode ser feita pelo utilitário nmtui.
 
-Após o DNS verifique o horário do seu servidor,
+Após ajustar o DNS verifique o horário do seu servidor,
 caso não esteja correto podera causar problemas com o domínio.
 
 Para promover o domínio use:
