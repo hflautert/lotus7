@@ -40,7 +40,7 @@ systemctl start sernet-samba-ad
 
 # Testes e configurações finais
 echo "Samba test
-smbclient -L \\127.0.0.1 -U administrator
+smbclient -L \\\127.0.0.1 -U administrator
 
 DNS test
 host -t SRV _ldap._tcp.domain.sc.gov.br.
