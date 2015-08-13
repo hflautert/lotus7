@@ -13,16 +13,23 @@ chkconfig sernet-samba-winbindd off
 
 # Liberações do firewall
 # Exibir portas usadas:
-# netstat -tlpn4 | grep samba
+# netstat -tulpn4 | grep samba
+# https://wiki.samba.org/index.php/Samba_port_usage
 firewall-cmd --permanent --zone=public --add-port=3268/tcp
 firewall-cmd --permanent --zone=public --add-port=3269/tcp
 firewall-cmd --permanent --zone=public --add-port=389/tcp
+firewall-cmd --permanent --zone=public --add-port=389/udp
 firewall-cmd --permanent --zone=public --add-port=135/tcp
 firewall-cmd --permanent --zone=public --add-port=464/tcp
+firewall-cmd --permanent --zone=public --add-port=464/udp
 firewall-cmd --permanent --zone=public --add-port=53/tcp
+firewall-cmd --permanent --zone=public --add-port=53/udp
+firewall-cmd --permanent --zone=public --add-port=5353/tcp
+firewall-cmd --permanent --zone=public --add-port=5353/udp
 firewall-cmd --permanent --zone=public --add-port=88/tcp
+firewall-cmd --permanent --zone=public --add-port=88/udp
 firewall-cmd --permanent --zone=public --add-port=636/tcp
-firewall-cmd --permanent --zone=public --add-port=1024/tcp
+firewall-cmd --permanent --zone=public --add-port=1024-5000/tcp
 systemctl reload firewalld
 
 # Selinux
