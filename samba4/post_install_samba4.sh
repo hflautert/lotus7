@@ -35,8 +35,8 @@ systemctl reload firewalld
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
-# Iniciar sambareboo
-systemctl start sernet-samba-ad 
+# Reiniciar samba - apos provisão
+systemctl restart sernet-samba-ad
 
 # Testes e configurações finais
 echo "Samba test
