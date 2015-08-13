@@ -11,7 +11,8 @@ chkconfig sernet-samba-nmbd off
 chkconfig sernet-samba-winbindd off
 
 # Liberações do firewall
-#https://bugs.centos.org/view.php?id=7407
+# https://bugs.centos.org/view.php?id=7407
+# TODO after bug: https://wiki.samba.org/index.php/Samba_port_usage
 systemctl disable firewalld
 systemctl stop firewalld
 
