@@ -4,8 +4,7 @@ cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
 # Alterar inicialização
 sed -i 's/SAMBA_START_MODE="none"/SAMBA_START_MODE="ad"/g' /etc/default/sernet-samba
 
-# Inicialização dos serviços
-systemctl start sernet-samba-ad 
+# Configrar inicialização dos serviços
 chkconfig sernet-samba-ad on 
 chkconfig sernet-samba-smbd off 
 chkconfig sernet-samba-nmbd off 
@@ -35,6 +34,9 @@ systemctl reload firewalld
 # Selinux
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+
+# Iniciar sambareboo
+systemctl start sernet-samba-ad 
 
 # Testes e configurações finais
 echo "Samba test
