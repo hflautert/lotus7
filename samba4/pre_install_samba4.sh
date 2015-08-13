@@ -5,7 +5,7 @@ wget -O /etc/yum.repos.d/sernet-samba.repo https://sernet-samba-public:Noo1oxe4z
 sed -i 's/USERNAME:ACCESSKEY/sernet-samba-public:Noo1oxe4zo/g' /etc/yum.repos.d/sernet-samba.repo
 
 # Instalação de pacotes
-yum -y install sernet-samba sernet-samba-ad
+yum -y install sernet-samba sernet-samba-ad krb5-workstation
 
 # Promover o domínio
 echo "Samba instalado:"
