@@ -10,11 +10,3 @@ yum -y install sernet-samba sernet-samba-ad krb5-workstation
 # Samba Version
 echo "Samba installed:"
 samba -V
-
-# Provisioning
-echo "
-Use the following command to provisioning:
-samba-tool domain provision --use-rfc2307 --interactive
-More info:
-https://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
-"
