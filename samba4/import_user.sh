@@ -14,8 +14,11 @@
 #      OU=Child
 #        john
 
-log_file=import_user.out
+log_file="/tmp/import_user_$(date +%d_%m_%s).out"
 touch $log_file
+
+OK=0
+ERROR=0
 
 while read line
 do
@@ -26,7 +29,20 @@ do
   ou=$(echo -e "$line" | cut -d';' -f5)
   email=$(echo -e "$line" | cut -d';' -f6)
 
-  echo "Importing user:"
-  echo "samba-tool user create $username $password --userou=\"$ou\" --surname=\"$surname\" --given-name=\"$name\" --mail-address=$email" >> $log_file
-  samba-tool user create $username $password --userou="$ou" --surname="$surname" --given-name="$name" --mail-address=$email >> $log_file
+
+  echo -e "\nImporting user: $username"
+  echo -e "\nsamba-tool user create $username $password --userou=\"$ou\" --surname=\"$surname\" --given-name=\"$name\" --mail-address=$email" >> $log_file 2>&1
+  samba-tool user create $username $password --userou="$ou" --surname="$surname" --given-name="$name" --mail-address=$email >> $log_file 2>&1
+  if [[ $? == 0 ]]; then
+    let OK++
+      echo "Successfully imported."
+  else
+    let ERROR++
+      echo "Import error."
+  fi
 done < $1
+
+
+echo -e "\nSuccessfully imported: $OK"
+echo "Import error: $ERROR"
+echo -e "See result on: $log_file\n"
