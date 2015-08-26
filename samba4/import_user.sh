@@ -5,7 +5,7 @@
 # ./import_user.sh users.csv
 #
 # users.csv syntax
-# Username;Nanme;Surname;Password;Organizational Unit;Email
+# Username;Name;Surname;Password;Organizational Unit;Email
 # john;John;Fourth;Passsw0rd;OU=Child,OU=Mother,OU=GrandMother;john@gmail.com
 #
 # Result - You must create OUs before import, the script just creates users.
