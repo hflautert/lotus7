@@ -28,5 +28,5 @@ do
 
   echo "Importing user:"
   echo "samba-tool user create $username $password --userou=\"$ou\" --surname=\"$surname\" --given-name=\"$name\" --mail-address=$email" >> $log_file
-  samba-tool user create $username $password --userou="$ou" --surname="$surname" --given-name="$name" --mail-address=$email
+  samba-tool user create $username $password --userou="$ou" --surname="$surname" --given-name="$name" --mail-address=$email >> $log_file
 done < $1
