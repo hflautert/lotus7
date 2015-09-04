@@ -8,6 +8,9 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 # Set samba classic mode
 sed -i 's/SAMBA_START_MODE="none"/SAMBA_START_MODE="classic"/g' /etc/default/sernet-samba
 
+# Hide domain name
+authconfig --enablewinbindusedefaultdomain --update
+
 # Setup services
 chkconfig sernet-samba-nmbd on
 chkconfig sernet-samba-smbd on
