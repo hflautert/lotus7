@@ -9,6 +9,11 @@ local_ip=$(ip -4 a | grep "inet " | grep -v "127.0.0.1" | awk '{print $2}' | cut
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
+# https://bugs.centos.org/view.php?id=7407
+# TODO after bug: https://wiki.samba.org/index.php/Samba_port_usage
+systemctl disable firewalld
+systemctl stop firewalld
+
 # Set samba classic mode
 sed -i 's/SAMBA_START_MODE="none"/SAMBA_START_MODE="classic"/g' /etc/default/sernet-samba
 
